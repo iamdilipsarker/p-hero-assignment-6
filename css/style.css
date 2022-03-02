@@ -9,7 +9,6 @@
 body{
     background-color: #FFFFFF;
     font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
     width:100%;
 }
 .header-text{
@@ -41,10 +40,4 @@ body{
 
 
 
-/*--------------------------------*\
- responsive design starts here
-\*--------------------------------*/
-
-/* for mobile devices */
-/* @media only screen and (max-width:488px)  */
 
