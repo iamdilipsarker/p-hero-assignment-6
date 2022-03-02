@@ -8,9 +8,10 @@ const searchPhone = () => {
     //get the data
     fetch(url)
         .then(res => res.json())
-        .then(data => displaySearchResult(data.data.slice(0,20)));
+        .then(data => displaySearchResult(data.data));
         
 }
+
 //get  all phones from the data array
 const displaySearchResult = (phones) => {
     console.log(phones)
@@ -27,10 +28,19 @@ const displaySearchResult = (phones) => {
                 <div class="card-body mx-auto">
                  <h5 class="card-title">${phone.phone_name}</h5>
                  <p class="card-text">${phone.brand}</p>
-                 <button class="border-0 border-rounded card-button" >Explore more</button>
+                 <button  onclick="loadPhoneDetails(${phone.slug})" class="border-0 border-rounded card-button" >Explore more</button>
                 </div>
             </div>
             `;
             searchResult.appendChild(div)
     }
+}
+const loadPhoneDetails = async slug => {
+    const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+    displayPhoneDetails(data);
+    
+
 }
