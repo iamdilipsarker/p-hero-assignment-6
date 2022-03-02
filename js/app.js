@@ -17,7 +17,7 @@ const displaySearchResult = (phones) => {
     // console.log(phones)
     const searchResult = document.getElementById("search-result");
     searchResult.textContent = "";
-     phones.forEach(phone => {
+    phones.forEach(phone => {
         // console.log(phone);
         //create cards dynamically 
         const div = document.createElement("div");
@@ -32,7 +32,8 @@ const displaySearchResult = (phones) => {
                 </div>
             </div>
             `;
-            searchResult.appendChild(div)
+           searchResult.appendChild(div)
+            
     })
 }
 //load a new api and get phone details by their id 
@@ -48,8 +49,8 @@ const loadPhoneDetails = async slug => {
 //display phone details by loading data from object and array
 const displayPhoneDetails = phone => {
     console.log(phone)
-    const mealDetails = document.getElementById("phone-details");
-    mealDetails.textContent = "";
+    const phoneDetails = document.getElementById("phone-details");
+    phoneDetails.textContent = "";
     const div = document.createElement("div");
     div.classList.add('card');
     div.classList.add('card-details-background');
@@ -75,5 +76,5 @@ const displayPhoneDetails = phone => {
       <p class="card-text">Radio: ${phone.others.Radio}</p>
     </div>
     `;
-    mealDetails.appendChild(div)
+    phoneDetails.appendChild(div)
 }
