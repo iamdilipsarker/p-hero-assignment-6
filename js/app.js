@@ -35,19 +35,17 @@ const displaySearchResult = (phones) => {
             searchResult.appendChild(div)
     })
 }
-const loadPhoneDetails =  slug => {
+//load a new api and get phone details by their id 
+const loadPhoneDetails = async slug => {
     // console.log(slug)
     const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displayPhoneDetails(data.data))
-        
-    // const res = await fetch(url);
-    // const data = await res.json();
-    // displayPhoneDetails(data);
+    const res = await fetch(url);
+    const data = await res.json();
+    displayPhoneDetails(data.data);
     
 
 }
+//display phone details by loading data from object and array
 const displayPhoneDetails = phone => {
     console.log(phone)
     const mealDetails = document.getElementById("phone-details");
