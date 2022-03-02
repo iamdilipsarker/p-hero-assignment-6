@@ -1,7 +1,14 @@
 //get input from search-field and get api response by calling api
 const searchPhone = () => {
     const searchField = document.getElementById("search-field");
+    const error = document.getElementById("error");
     const searchText = searchField.value;
+    if (!isNaN(searchText) || searchText === "") { //check !isNan string or numbers or others true
+        error.innerText = "Please enter text here"
+    }
+    else if (searchText=== "Nokia" || searchText==="Motorola" || searchText ==="LG" ||searchText === "Xaomi" ||searchText ==="Huawei") {
+        error.innerText = "Sorry no found found";
+    }
     //clear the input search filed
     searchField.value = "";
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -14,13 +21,11 @@ const searchPhone = () => {
 
 //get  all phones from the data array
 const displaySearchResult = (phones) => {
-    // console.log(phones)
-    
     const searchResult = document.getElementById("search-result");
     const first20Phone = phones.slice(0, 20);
     searchResult.textContent = "";
     first20Phone.forEach(phone => {
-        // console.log(phone);
+        
         //create cards dynamically 
         const div = document.createElement("div");
         div.classList.add("col");
@@ -40,7 +45,6 @@ const displaySearchResult = (phones) => {
 }
 //load a new api and get phone details by their id 
 const loadPhoneDetails = async slug => {
-    // console.log(slug)
     const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
     const res = await fetch(url);
     const data = await res.json();
@@ -50,7 +54,6 @@ const loadPhoneDetails = async slug => {
 }
 //display phone details by loading data from object and array
 const displayPhoneDetails = phone => {
-    console.log(phone)
     const phoneDetails = document.getElementById("phone-details");
     phoneDetails.textContent = "";
     const div = document.createElement("div");
