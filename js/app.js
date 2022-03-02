@@ -15,9 +15,11 @@ const searchPhone = () => {
 //get  all phones from the data array
 const displaySearchResult = (phones) => {
     // console.log(phones)
+    
     const searchResult = document.getElementById("search-result");
+    const first20Phone = phones.slice(0, 20);
     searchResult.textContent = "";
-    phones.forEach(phone => {
+    first20Phone.forEach(phone => {
         // console.log(phone);
         //create cards dynamically 
         const div = document.createElement("div");
