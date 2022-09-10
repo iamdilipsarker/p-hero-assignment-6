@@ -1,35 +1,39 @@
 //get input from search-field and get api response by calling api
 const searchPhone = () => {
-    const searchField = document.getElementById("search-field");
-    const error = document.getElementById("error");
-    const searchText = searchField.value;
-    if (!isNaN(searchText) || searchText === "") { //check !isNan string or numbers or others true
-        error.innerText = "Please enter text here"
-    }
-    else if (searchText=== "Nokia" || searchText==="Motorola" || searchText ==="LG" ||searchText === "Xaomi" ||searchText ==="Huawei") {
-        error.innerText = "Sorry no found found";
-    }
-    //clear the input search filed
-    searchField.value = "";
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    //get the data
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displaySearchResult(data.data));
-        
-}
+  const searchField = document.getElementById("search-field");
+  const error = document.getElementById("error");
+  const searchText = searchField.value;
+  if (!isNaN(searchText) || searchText === "") {
+    //check !isNan string or numbers or others true
+    error.innerText = "Please enter text here";
+  } else if (
+    searchText === "Nokia" ||
+    searchText === "Motorola" ||
+    searchText === "LG" ||
+    searchText === "Xaomi" ||
+    searchText === "Huawei"
+  ) {
+    error.innerText = "Sorry no found found";
+  }
+  //clear the input search filed
+  searchField.value = "";
+  const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+  //get the data
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displaySearchResult(data.data));
+};
 
 //get  all phones from the data array
 const displaySearchResult = (phones) => {
-    const searchResult = document.getElementById("search-result");
-    const first20Phone = phones.slice(0, 20);
-    searchResult.textContent = "";
-    first20Phone.forEach(phone => {
-        
-        //create cards dynamically 
-        const div = document.createElement("div");
-        div.classList.add("col");
-        div.innerHTML = `
+  const searchResult = document.getElementById("search-result");
+  const first20Phone = phones.slice(0, 20);
+  searchResult.textContent = "";
+  first20Phone.forEach((phone) => {
+    //create cards dynamically
+    const div = document.createElement("div");
+    div.classList.add("col");
+    div.innerHTML = `
             <div class="card card-background">
                 <img src="${phone.image}" class="card-img-top w-50 mt-3 mx-auto" alt="image-of-a-phone">
                 <div class="card-body mx-auto">
@@ -39,28 +43,25 @@ const displaySearchResult = (phones) => {
                 </div>
             </div>
             `;
-           searchResult.appendChild(div)
-            
-    })
-}
-//load a new api and get phone details by their id 
-const loadPhoneDetails = async slug => {
-    const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayPhoneDetails(data.data);
-    
-
-}
+    searchResult.appendChild(div);
+  });
+};
+//load a new api and get phone details by their id
+const loadPhoneDetails = async (slug) => {
+  const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  displayPhoneDetails(data.data);
+};
 //display phone details by loading data from object and array
-const displayPhoneDetails = phone => {
-    const phoneDetails = document.getElementById("phone-details");
-    phoneDetails.textContent = "";
-    const div = document.createElement("div");
-    div.classList.add('card');
-    div.classList.add('card-details-background');
+const displayPhoneDetails = (phone) => {
+  const phoneDetails = document.getElementById("phone-details");
+  phoneDetails.textContent = "";
+  const div = document.createElement("div");
+  div.classList.add("card");
+  div.classList.add("card-details-background");
 
-    div.innerHTML = `
+  div.innerHTML = `
     <img src="${phone.image}" class="card-img-top w-50 mx-auto mt-3" alt="image-of-a-phone">
     <div class="card-body" id="card-details-section">
       <h5 class="card-title">${phone.name}</h5>
@@ -81,5 +82,5 @@ const displayPhoneDetails = phone => {
       <p class="card-text">Radio: ${phone.others.Radio}</p>
     </div>
     `;
-    phoneDetails.appendChild(div)
-}
+  phoneDetails.appendChild(div);
+};
