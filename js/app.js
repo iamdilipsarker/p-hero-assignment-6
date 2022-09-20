@@ -13,7 +13,7 @@ const searchPhone = () => {
     searchText === "Xaomi" ||
     searchText === "Huawei"
   ) {
-    error.innerText = "Sorry no found found";
+    error.innerText = "Sorry no phone found";
   }
   //clear the input search filed
   searchField.value = "";
